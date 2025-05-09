@@ -41,13 +41,16 @@ ascii-media image <image_path_or_url> [--nocolor] [--width <width>] [--fit]
 - `--width`: Set custom ASCII width (default: 100).
 - `--fit`: Fit ASCII art to terminal size (default: enabled).
 - `--mode` : Selects the mode for the ascii-gradient.
-```bash
-    - `--mode`: Select the ASCII gradient mode. Available options:
-    - `standard`: Default ASCII gradient.
-    - `blocks`: Uses block characters for higher resolution.
-    - `dots`: Uses dot-based characters for a minimalistic look.
-    - `custom`: Allows you to define a custom gradient.
-```
+
+    - ` --mode=LD`
+    - ` --mode=SD`
+    - ` --mode=HD (default)`
+    - ` --mode=XHD`
+    - ` --mode=1 `
+    - ` --mode=2`
+    - ` --mode=3`
+    - ` --mode=256`
+
 
 ### Video Playback
 Play a video as ASCII animation:

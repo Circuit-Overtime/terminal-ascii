@@ -9,8 +9,10 @@ ASCII_GRADIENT_XHD = "⢿⠿⣿▒▒▓▓▓▒▒▓▓▒▒▓▒▒▓▓�
 ASCII_GRADIENT_1 = " ░▒▒▓▓█@#$%&*+=-.abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
 ASCII_GRADIENT_2 = " ░▒▓█@#$%&*^()_+`-={}[]|:;\"'<>,.?/abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
 ASCII_GRADIENT_3 = " ░▒▓█@#$%&*()_+=-|}{[]:;<>.,~`abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+ASCII_GRADIENT_256 = "⠁⠃⠇⠧⠷⠿⡿⣟⣯⣷⣿⣿⣿⣿"
 
-def frame_to_ascii(frame, width=100, color=False, mode='HD'):
+
+def frame_to_ascii(frame, width=800, color=False, mode='HD'):
     height, original_width = frame.shape[:2]
     aspect_ratio = original_width / height
     new_height = int(width / aspect_ratio * 0.55)
@@ -23,6 +25,8 @@ def frame_to_ascii(frame, width=100, color=False, mode='HD'):
         gradient = ASCII_GRADIENT_LD
     elif mode == 'SD':
         gradient = ASCII_GRADIENT_SD
+    elif mode == 'HD':
+        gradient = ASCII_GRADIENT_HD
     elif mode == 'XHD':
         gradient = ASCII_GRADIENT_XHD
     elif mode == '1':
@@ -31,6 +35,8 @@ def frame_to_ascii(frame, width=100, color=False, mode='HD'):
         gradient = ASCII_GRADIENT_2
     elif mode == '3':
         gradient = ASCII_GRADIENT_3
+    elif mode == '256':
+        gradient = ASCII_GRADIENT_256
     else:
         gradient = ASCII_GRADIENT_HD  # Default mode is HD
 

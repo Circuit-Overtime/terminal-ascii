@@ -9,7 +9,7 @@ from .video import open_video, get_video_fps, get_video_dimensions, read_frame
 from .ascii import frame_to_ascii
 from .terminal import move_cursor_top, hide_cursor, show_cursor, set_terminal_size
 
-def play_video_ascii(video_path, color=True, width=100, loop=False, fit=True):
+def play_video_ascii(video_path, mode="HD", color=True, width=100, loop=False, fit=True):
     cap = open_video(video_path)
 
     fps = get_video_fps(cap)
@@ -53,12 +53,12 @@ def play_video_ascii(video_path, color=True, width=100, loop=False, fit=True):
                     break
 
             if color:
-                ascii_art = frame_to_ascii(frame, width=width, color=True)
+                ascii_art = frame_to_ascii(frame, width=width, color=True, mode=mode)
             else:
                 gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
                 clahe = cv2.createCLAHE(clipLimit=2.0, tileGridSize=(8, 8))
                 enhanced_gray = clahe.apply(gray)
-                ascii_art = frame_to_ascii(enhanced_gray, width=width, color=False)
+                ascii_art = frame_to_ascii(enhanced_gray, width=width, color=False, mode=mode)
 
             move_cursor_top()
             sys.stdout.write(ascii_art)
@@ -82,10 +82,12 @@ def main():
     parser.add_argument("--width", type=int, default=100, help="Set custom ASCII width")
     parser.add_argument("--loop", action="store_true", help="Loop the video")
     parser.add_argument("--fit", action="store_true", default=True, help="Fit ASCII to terminal size")
+    parser.add_argument("--mode", choices=["LD", "SD", "HD", "XHD", "1", "2", "3", "256"], default="HD", help="Choose the ASCII art gradient mode (default: HD)")
 
     args = parser.parse_args()
     play_video_ascii(
         video_path=args.video_path,
+        mode=args.mode,
         color=not args.nocolor,  # default True
         width=args.width,
         loop=args.loop,

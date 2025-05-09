@@ -12,7 +12,7 @@ def main():
     image_parser.add_argument('--nocolor', action='store_true', help='Disable colored ASCII output')
     image_parser.add_argument('--width', type=int, default=100, help='Set custom ASCII width')
     image_parser.add_argument('--fit', action='store_true', default=True, help='Fit ASCII to terminal size')
-    image_parser.add_argument('--mode', choices=['LD', 'SD', 'HD', 'XHD', '1', '2', '3'], default='HD', help='Choose the ASCII art gradient mode (default: HD)')
+    image_parser.add_argument('--mode', choices=['LD', 'SD', 'HD', 'XHD', '1', '2', '3', '256'], default='HD', help='Choose the ASCII art gradient mode (default: HD)')
 
     # Video subcommand
     video_parser = subparsers.add_parser('video', help='Play a video as ASCII animation')
@@ -21,6 +21,7 @@ def main():
     video_parser.add_argument('--width', type=int, default=100, help='Set custom ASCII width')
     video_parser.add_argument('--loop', action='store_true', help='Loop the video')
     video_parser.add_argument('--fit', action='store_true', default=True, help='Fit ASCII to terminal size')
+    video_parser.add_argument('--mode', choices=['LD', 'SD', 'HD', 'XHD', '1', '2', '3', '256'], default='HD', help='Choose the ASCII art gradient mode (default: HD)')
 
     # Audio subcommand
     audio_parser = subparsers.add_parser('audio', help='Visualize audio waveform as ASCII art')
@@ -37,7 +38,7 @@ def main():
     ai_image_parser.add_argument('--download', action='store_true', help='Download the generated image')
     ai_image_parser.add_argument('--nocolor', action='store_true', help='Disable colored ASCII output')
     ai_image_parser.add_argument('--fit', action='store_true', default=True, help='Fit ASCII to terminal size')
-    ai_image_parser.add_argument('--mode', choices=['LD', 'SD', 'HD', 'XHD', '1', '2', '3'], default='HD', help='Choose the ASCII art gradient mode (default: HD)')
+    ai_image_parser.add_argument('--mode', choices=['LD', 'SD', 'HD', 'XHD', '1', '2', '3', '256'], default='HD', help='Choose the ASCII art gradient mode (default: HD)')
 
     args = parser.parse_args()
 
@@ -52,6 +53,7 @@ def main():
     elif args.command == 'video':
         player.play_video_ascii(
             video_path=args.video_path,
+            mode=args.mode,
             color=not args.nocolor,
             width=args.width,
             loop=args.loop,
