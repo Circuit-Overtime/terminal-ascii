@@ -12,6 +12,7 @@ def main():
     image_parser.add_argument('--nocolor', action='store_true', help='Disable colored ASCII output')
     image_parser.add_argument('--width', type=int, default=100, help='Set custom ASCII width')
     image_parser.add_argument('--fit', action='store_true', default=True, help='Fit ASCII to terminal size')
+    image_parser.add_argument('--mode', choices=['LD', 'SD', 'HD', 'XHD', '1', '2', '3'], default='HD', help='Choose the ASCII art gradient mode (default: HD)')
 
     # Video subcommand
     video_parser = subparsers.add_parser('video', help='Play a video as ASCII animation')
@@ -42,6 +43,7 @@ def main():
     if args.command == 'image':
         imager.play_image_ascii(
             image_path=args.image_path,
+            mode=args.mode,
             color=not args.nocolor,
             width=args.width,
             fit=args.fit,

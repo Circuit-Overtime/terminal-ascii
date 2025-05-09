@@ -41,7 +41,7 @@ def resize_image(image, width):
     new_height = int(width / aspect_ratio)
     return cv2.resize(image, (width, new_height), interpolation=cv2.INTER_AREA)
 
-def play_image_ascii(image_path, color=True, width=100, fit=True):
+def play_image_ascii(image_path, mode, color=True, width=100, fit=True, ):
     temp_file = None
 
     if is_url(image_path):
@@ -83,7 +83,7 @@ def play_image_ascii(image_path, color=True, width=100, fit=True):
             resized_image = resize_image(image, width)
 
             if color:
-                ascii_art = frame_to_ascii(resized_image, width=width, color=True)
+                ascii_art = frame_to_ascii(resized_image, width=width, color=True, mode=mode) 
             else:
                 gray = cv2.cvtColor(resized_image, cv2.COLOR_BGR2GRAY)
                 clahe = cv2.createCLAHE(clipLimit=2.0, tileGridSize=(8, 8))

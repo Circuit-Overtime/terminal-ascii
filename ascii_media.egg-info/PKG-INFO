@@ -8,4 +8,8 @@ Requires-Dist: keyboard
 Requires-Dist: soundfile
 Requires-Dist: asciichartpy
 Requires-Dist: yt-dlp
+Requires-Dist: pygame
+Requires-Dist: colorama
+Requires-Dist: termcolor
+Requires-Dist: Pillow
 Dynamic: requires-dist

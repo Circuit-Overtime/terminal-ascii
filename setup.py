@@ -15,11 +15,7 @@ setup(
         "pygame",
         "colorama",
         "termcolor",
-        "Pillow",
-        "moviepy",
-        "ffmpeg-python",
-        "mimetypes",
-        "tempfile",
+        "Pillow"
 
     ],
     entry_points={
