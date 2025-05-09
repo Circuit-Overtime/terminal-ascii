@@ -1,5 +1,5 @@
 import argparse
-from . import audio_wave, imager, player, ai_image  # Import ai_image module
+from . import audio_wave, imager, player, ai_image 
 
 def main():
     parser = argparse.ArgumentParser(prog='ascii-media', description="Render media as ASCII art in your terminal.")
@@ -37,6 +37,7 @@ def main():
     ai_image_parser.add_argument('--download', action='store_true', help='Download the generated image')
     ai_image_parser.add_argument('--nocolor', action='store_true', help='Disable colored ASCII output')
     ai_image_parser.add_argument('--fit', action='store_true', default=True, help='Fit ASCII to terminal size')
+    ai_image_parser.add_argument('--mode', choices=['LD', 'SD', 'HD', 'XHD', '1', '2', '3'], default='HD', help='Choose the ASCII art gradient mode (default: HD)')
 
     args = parser.parse_args()
 

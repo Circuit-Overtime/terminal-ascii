@@ -40,7 +40,7 @@ def download_image(url):
     temp.close()
     return temp.name
 
-def display_image_ascii(path, color=True, width=100, fit=True):
+def display_image_ascii(path, color=True, width=100, fit=True, mode="HD"):
     image = cv2.imread(path)
     if image is None:
         print("[Error] Could not load image.", file=sys.stderr)
@@ -59,9 +59,9 @@ def display_image_ascii(path, color=True, width=100, fit=True):
     resized = cv2.resize(image, (width, int(width / (image.shape[1] / image.shape[0]))), interpolation=cv2.INTER_AREA)
     if not color:
         gray = cv2.cvtColor(resized, cv2.COLOR_BGR2GRAY)
-        ascii_art = frame_to_ascii(gray, width=width, color=False)
+        ascii_art = frame_to_ascii(gray, width=width, color=False, mode=mode)
     else:
-        ascii_art = frame_to_ascii(resized, width=width, color=True)
+        ascii_art = frame_to_ascii(resized, width=width, color=True, mode=mode)
 
     hide_cursor()
     try:
@@ -82,7 +82,6 @@ def main(args):
             height=args.height or 512,
             nologo=args.nologo or True,
             enhance=args.enhance or False
-
         )
 
         if args.download:
@@ -93,10 +92,8 @@ def main(args):
             os.remove(image_path)
             print(f"[Saved] Image saved as: {save_path}")
         else:
-            display_image_ascii(image_path)
-
+            display_image_ascii(image_path, color=not args.nocolor, width=args.width, fit=args.fit, mode=args.mode)
 
     except Exception as e:
         print(f"[Error] {e}", file=sys.stderr)
-
 
