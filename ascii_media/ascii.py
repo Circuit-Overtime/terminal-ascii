@@ -1,5 +1,5 @@
 import numpy as np
-
+import cv2
 ASCII_GRADIENT = " ░▒▓█"
 
 def frame_to_ascii(frame, width=100, color=False):

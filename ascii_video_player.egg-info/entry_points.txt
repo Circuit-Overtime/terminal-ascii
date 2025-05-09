@@ -1,2 +1,0 @@
-[console_scripts]
-ascii-video = ascii_video_player.player:play_video_ascii

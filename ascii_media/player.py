@@ -1,9 +1,15 @@
 import time
+import sys
+import os
+import argparse
+import cv2
+import keyboard  
+
 from .video import open_video, get_video_fps, get_video_dimensions, read_frame
 from .ascii import frame_to_ascii
 from .terminal import move_cursor_top, hide_cursor, show_cursor, set_terminal_size
 
-def play_video_ascii(video_path, color=False, width=100, loop=False, fit=True):
+def play_video_ascii(video_path, color=True, width=100, loop=False, fit=True):
     cap = open_video(video_path)
 
     fps = get_video_fps(cap)
@@ -23,9 +29,20 @@ def play_video_ascii(video_path, color=False, width=100, loop=False, fit=True):
             print("Warning: Could not fit to terminal. Using default width.", file=sys.stderr)
 
     hide_cursor()
+    paused = False
 
     try:
         while True:
+            if keyboard.is_pressed('q'):
+                break
+            if keyboard.is_pressed('p'):
+                paused = not paused
+                time.sleep(0.3)  # Debounce
+
+            if paused:
+                time.sleep(0.1)
+                continue
+
             frame_start = time.time()
             ret, frame = read_frame(cap)
             if not ret:
@@ -57,3 +74,20 @@ def play_video_ascii(video_path, color=False, width=100, loop=False, fit=True):
     finally:
         cap.release()
         show_cursor()
+
+def main():
+    parser = argparse.ArgumentParser(description="Play a video as ASCII art in your terminal.")
+    parser.add_argument("video_path", help="Path to the video file")
+    parser.add_argument("--nocolor", action="store_true", help="Disable colored ASCII output")
+    parser.add_argument("--width", type=int, default=100, help="Set custom ASCII width")
+    parser.add_argument("--loop", action="store_true", help="Loop the video")
+    parser.add_argument("--fit", action="store_true", default=True, help="Fit ASCII to terminal size")
+
+    args = parser.parse_args()
+    play_video_ascii(
+        video_path=args.video_path,
+        color=not args.nocolor,  # default True
+        width=args.width,
+        loop=args.loop,
+        fit=args.fit,
+    )
