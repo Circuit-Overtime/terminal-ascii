@@ -20,7 +20,7 @@ def frame_to_ascii(frame, width=800, color=False, mode='HD'):
 
     ascii_frame = []
 
-    # Select the appropriate gradient based on the mode
+    
     if mode == 'LD':
         gradient = ASCII_GRADIENT_LD
     elif mode == 'SD':
