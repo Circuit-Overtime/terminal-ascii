@@ -57,6 +57,11 @@ Go to the original repository and open a pull request. Provide a detailed descri
 - Ensure that your code is modular and reusable.
 - Avoid introducing breaking changes unless absolutely necessary.
 
+---
+
+## Major Attraction 
+- If you can create a pipeline for compression using ASCII code, and a decompressor which creates almost a `70-80%` reconstruction of the original image! It will be showcased and you will be featured! 
+
 ## Adding New Features
 If you want to add a new feature, consider the following:
 - Does the feature align with the project's goals?
@@ -73,4 +78,4 @@ If you add new functionality, include tests to verify its behavior. Use existing
 By contributing to this project, you agree that your contributions will be licensed under the MIT License.
 
 Thank you for contributing to ASCII Media Renderer!
-> Regards from Ayushman <3
+> Regards from Ayushman <3.
